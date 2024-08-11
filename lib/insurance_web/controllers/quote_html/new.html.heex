@@ -1,0 +1,8 @@
+<.header>
+  New Quote
+  <:subtitle>Use this form to manage quote records in your database.</:subtitle>
+</.header>
+
+<.quote_form changeset={@changeset} action={~p"/quotes"} />
+
+<.back navigate={~p"/quotes"}>Back to quotes</.back>

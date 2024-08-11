@@ -1,0 +1,13 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:account_name]} type="text" label="Account name" />
+  <.input field={f[:broker_name]} type="text" label="Broker name" />
+  <.input field={f[:brokerage_name]} type="text" label="Brokerage name" />
+  <.input field={f[:quote_date]} type="text" label="Quote date" />
+  <.input field={f[:average_premium]} type="text" label="Average premium" />
+  <:actions>
+    <.button>Save Quote</.button>
+  </:actions>
+</.simple_form>

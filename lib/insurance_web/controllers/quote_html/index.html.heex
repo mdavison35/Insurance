@@ -1,0 +1,27 @@
+<.header>
+  Listing Quotes
+  <:actions>
+    <.link href={~p"/quotes/new"}>
+      <.button>New Quote</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="quotes" rows={@quotes} row_click={&JS.navigate(~p"/quotes/#{&1}")}>
+  <:col :let={quote} label="Account name"><%= quote.account_name %></:col>
+  <:col :let={quote} label="Broker name"><%= quote.broker_name %></:col>
+  <:col :let={quote} label="Brokerage name"><%= quote.brokerage_name %></:col>
+  <:col :let={quote} label="Quote date"><%= quote.quote_date %></:col>
+  <:col :let={quote} label="Average premium"><%= quote.average_premium %></:col>
+  <:action :let={quote}>
+    <div class="sr-only">
+      <.link navigate={~p"/quotes/#{quote}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/quotes/#{quote}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={quote}>
+    <.link href={~p"/quotes/#{quote}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

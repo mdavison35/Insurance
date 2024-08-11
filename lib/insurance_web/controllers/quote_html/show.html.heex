@@ -1,0 +1,19 @@
+<.header>
+  Quote <%= @quote.id %>
+  <:subtitle>This is a quote record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/quotes/#{@quote}/edit"}>
+      <.button>Edit quote</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Account name"><%= @quote.account_name %></:item>
+  <:item title="Broker name"><%= @quote.broker_name %></:item>
+  <:item title="Brokerage name"><%= @quote.brokerage_name %></:item>
+  <:item title="Quote date"><%= @quote.quote_date %></:item>
+  <:item title="Average premium"><%= @quote.average_premium %></:item>
+</.list>
+
+<.back navigate={~p"/quotes"}>Back to quotes</.back>
