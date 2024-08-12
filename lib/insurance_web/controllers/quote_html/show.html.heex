@@ -10,7 +10,9 @@
 
 <.list>
   <:item title="Account name"><%= @quote.account_name %></:item>
-  <:item title="Broker name"><%= @quote.broker_name %></:item>
+  
+  <:item title="Broker name"><a href={"/broker/#{@broker_name}"} class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><%= @quote.broker_name %></a></:item>
+  
   <:item title="Brokerage name"><%= @quote.brokerage_name %></:item>
   <:item title="Quote date"><%= @quote.quote_date %></:item>
   <:item title="Average premium"><%= @quote.average_premium %></:item>

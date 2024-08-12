@@ -20,7 +20,7 @@ defmodule InsuranceWeb.Router do
     get "/", PageController, :home
     live "/quotes/import", QuoteLive.Import, :import
     resources "/quotes", QuoteController
-
+    get "/broker/:name", BrokerController, :show
   end
 
   # Other scopes may use custom stacks.

@@ -5,7 +5,7 @@ defmodule Insurance.Quotes do
 
   import Ecto.Query, warn: false
   alias Insurance.Repo
-
+  alias Insurance.Quotes
   alias Insurance.Quotes.Quote
 
   @doc """
@@ -18,7 +18,13 @@ defmodule Insurance.Quotes do
 
   """
   def list_quotes do
-    Repo.all(Quote)
+    #Quote |> Ecto.Query.where(broker_name: "Jared Mertz") |> Repo.all()
+    Quote |> Ecto.Query.order_by(desc: :average_premium) |> Repo.all()
+    #Repo.all(Quote)
+  end
+
+  def list_quotes_by_broker(broker_name) do
+    Quote |> Ecto.Query.where(broker_name: ^broker_name) |> Repo.all()
   end
 
   @doc """

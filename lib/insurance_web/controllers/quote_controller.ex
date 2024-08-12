@@ -28,7 +28,10 @@ defmodule InsuranceWeb.QuoteController do
 
   def show(conn, %{"id" => id}) do
     quote = Quotes.get_quote!(id)
-    render(conn, :show, quote: quote)
+    broker_name = quote.broker_name
+      |> String.replace(" ", "")
+      |> Phoenix.Naming.underscore()
+    render(conn, :show, quote: quote, broker_name: broker_name)
   end
 
   def edit(conn, %{"id" => id}) do
