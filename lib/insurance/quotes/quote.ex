@@ -8,6 +8,7 @@ defmodule Insurance.Quotes.Quote do
     field :brokerage_name, :string
     field :quote_date, :string
     field :average_premium, :string
+    field :person_email, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -15,7 +16,7 @@ defmodule Insurance.Quotes.Quote do
   @doc false
   def changeset(quote, attrs) do
     quote
-    |> cast(attrs, [:account_name, :broker_name, :brokerage_name, :quote_date, :average_premium])
-    |> validate_required([:account_name, :broker_name, :brokerage_name, :quote_date, :average_premium])
+    |> cast(attrs, [:account_name, :broker_name, :brokerage_name, :quote_date, :average_premium, :person_email])
+    |> validate_required([:account_name, :broker_name, :brokerage_name, :quote_date, :average_premium, :person_email])
   end
 end

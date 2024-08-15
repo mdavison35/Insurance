@@ -20,6 +20,14 @@ defmodule Insurance.Quotes.Importer do
     end)
   end
 
+  def import(rows, email) do
+    rows
+    |> transform_keys()
+    |> Enum.map(fn attrs ->
+      Quotes.create_quote(attrs, email)
+    end)
+  end
+
   # "Account Name" => "account_name"
   defp transform_keys(rows) do
     rows

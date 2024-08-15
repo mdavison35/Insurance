@@ -14,13 +14,20 @@ defmodule InsuranceWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authOptional, do: plug(AuthPlugOptional)
+
   scope "/", InsuranceWeb do
-    pipe_through :browser
+    pipe_through [:browser, :authOptional]
 
     get "/", PageController, :home
-    live "/quotes/import", QuoteLive.Import, :import
+
+    get "/login", AuthController, :login
+    get "/logout", AuthController, :logout
+
+    live "/quotes/import/:email", QuoteLive.Import
     resources "/quotes", QuoteController
     get "/broker/:name", BrokerController, :show
+    get "/brokerage/:name", BrokerageController, :show
   end
 
   # Other scopes may use custom stacks.

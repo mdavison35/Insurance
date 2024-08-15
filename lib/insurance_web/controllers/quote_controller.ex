@@ -5,9 +5,18 @@ defmodule InsuranceWeb.QuoteController do
   alias Insurance.Quotes.Quote
 
   def index(conn, _params) do
-    quotes = Quotes.list_quotes()
-    render(conn, :index, quotes: quotes)
+    quotes = Quotes.list_quotes(get_person_email(conn))
+    render(conn, :index, quotes: quotes, person_email: get_person_email(conn))
   end
+
+def get_person_email(conn) do
+  case Map.has_key?(conn.assigns, :person) do
+    false ->
+      0
+    true ->
+      Map.get(conn.assigns.person, :email)
+  end
+end
 
   def new(conn, _params) do
     changeset = Quotes.change_quote(%Quote{})

@@ -1,4 +1,4 @@
-defmodule Insurance.Repo.Migrations.CreateQuotes do
+defmodule Insurance.Repo.Migrations.Alter do
   use Ecto.Migration
 
   def change do
@@ -8,6 +8,7 @@ defmodule Insurance.Repo.Migrations.CreateQuotes do
       add :brokerage_name, :string
       add :quote_date, :string
       add :average_premium, :string
+      add :person_email, :string
 
       timestamps(type: :utc_datetime)
     end

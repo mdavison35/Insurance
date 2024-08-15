@@ -9,11 +9,12 @@
 
 <.table id="quotes" rows={@quotes} row_click={&JS.navigate(~p"/quotes/#{&1}")}>
   <:col :let={quote} label="Account name"><%= quote.account_name %></:col>
-  <:col :let={quote} label="Broker name"><%= quote.broker_name %></:col>
-  <:col :let={quote} label="Brokerage name"><a href={"/brokerage/#{quote.brokerage_name
-      |> String.replace(" ", "_")}"} 
+  <:col :let={quote} label="Broker name"><a href={"/broker/#{quote.broker_name
+      |> String.replace(" ", "")
+      |> Phoenix.Naming.underscore()}"} 
       class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-    <%= quote.brokerage_name %></a></:col>
+    <%= quote.broker_name %></a></:col>
+  <:col :let={quote} label="Brokerage name"><%= quote.brokerage_name %></:col>
   <:col :let={quote} label="Quote date"><%= quote.quote_date %></:col>
   <:col :let={quote} label="Average premium"><%= quote.average_premium %></:col>
   <:action :let={quote}>

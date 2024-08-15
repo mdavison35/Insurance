@@ -2,6 +2,8 @@
   Import Quotes
 </.header>
 
+<h2><%= @email %></h2>
+
 <div class="my-12">
   <form :if={length(@parsed_rows) == 0} id="upload-form" phx-submit="parse" phx-change="validate" class="space-y-2">
     <div class="p-4 border border-zinc-200 rounded" phx-drop-target={@uploads.sample_csv.ref}>

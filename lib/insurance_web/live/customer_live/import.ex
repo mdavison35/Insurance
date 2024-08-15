@@ -3,14 +3,16 @@ defmodule InsuranceWeb.QuoteLive.Import do
   alias Insurance.Quotes.Importer
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(%{"email" => email}, _session, socket) do
     {:ok,
     socket
+    |> assign(:email, email)
     |> assign(:parsed_rows, [])
     |> assign(:imported_quotes, [])
     |> assign(:sample_quotes, [])
     |> assign(:uploaded_files, [])
     |> allow_upload(:sample_csv, accept: ~w(.csv), max_entries: 1)}
+
   end
 
   @impl true
@@ -42,7 +44,8 @@ defmodule InsuranceWeb.QuoteLive.Import do
   end
 
   def handle_event("import", _, socket) do
-    imported_quotes = Importer.import(socket.assigns.parsed_rows)
+    email = socket.assigns.email
+    imported_quotes = Importer.import(socket.assigns.parsed_rows, email)
 
     {
       :noreply,
