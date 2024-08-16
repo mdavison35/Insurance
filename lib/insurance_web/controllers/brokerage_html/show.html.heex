@@ -8,23 +8,125 @@
 </.header>
 
 <.table id="quotes" rows={@quotes} row_click={&JS.navigate(~p"/quotes/#{&1}")}>
-  <:col :let={quote} label="Account name"><%= quote.account_name %></:col>
-  <:col :let={quote} label="Broker name"><a href={"/broker/#{quote.broker_name
-      |> String.replace(" ", "")
-      |> Phoenix.Naming.underscore()}"} 
-      class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-    <%= quote.broker_name %></a></:col>
-  <:col :let={quote} label="Brokerage name"><%= quote.brokerage_name %></:col>
-  <:col :let={quote} label="Quote date"><%= quote.quote_date %></:col>
-  <:col :let={quote} label="Average premium"><%= quote.average_premium %></:col>
+  <:col :let={quote} label="Account name">
+    <%= cond do %>
+    <% String.to_integer(quote.average_premium) > 15000 -> %>
+      <font class="font-bold text-black-400/100">
+        <%= quote.account_name %>
+      </font>
+    <% String.to_integer(quote.average_premium) > 10000 -> %>
+      <font class="font-medium text-slate-500/75">
+        <%= quote.account_name %>
+      </font>
+    <% true -> %>
+      <font size="-1" class="font-medium text-slate-500/50"> 
+        <%= quote.account_name %>
+      </font>
+    <% end %>
+  </:col>
+  <:col :let={quote} label="Broker name">
+    <%= cond do %>
+      <% String.to_integer(quote.average_premium) > 15000 -> %>
+        <a href={"/broker/#{quote.broker_name
+          |> String.replace(" ", "")
+          |> Phoenix.Naming.underscore()}"} 
+          class="font-medium text-blue-600/75 hover:underline">
+          <%= quote.broker_name %>
+        </a>
+      <% String.to_integer(quote.average_premium) > 10000 -> %>
+        <a href={"/broker/#{quote.broker_name
+          |> String.replace(" ", "")
+          |> Phoenix.Naming.underscore()}"} 
+          class="font-medium text-blue-600/50 hover:underline">
+          <%= quote.broker_name %>
+        </a>
+      <% true -> %>
+        <a href={"/broker/#{quote.broker_name
+          |> String.replace(" ", "")
+          |> Phoenix.Naming.underscore()}"} 
+          class="font-medium text-blue-600/25 hover:underline">
+          <%= quote.broker_name %>
+        </a>
+    <% end %>
+  </:col>
+  <:col :let={quote} label="Brokerage name">
+    <%= cond do %>
+      <% String.to_integer(quote.average_premium) > 15000 -> %>
+          <a href={"/brokerage/#{quote.brokerage_name
+            |> String.replace(" ", "_")}"} 
+            class="font-medium text-blue-600/75 hover:underline">
+            <%= quote.brokerage_name %>
+          </a>
+      <% String.to_integer(quote.average_premium) > 10000 -> %>
+        <a href={"/brokerage/#{quote.brokerage_name
+          |> String.replace(" ", "_")}"} 
+          class="font-medium text-blue-600/50 hover:underline">
+          <%= quote.brokerage_name %>
+        </a>
+      <% true -> %>
+        <a href={"/brokerage/#{quote.brokerage_name
+          |> String.replace(" ", "_")}"} 
+          class="font-medium text-blue-600/25 hover:underline">
+          <%= quote.brokerage_name %>
+        </a>
+    <% end %>
+  </:col>
+  <:col :let={quote} label="Quote date" >
+    <%= cond do %>
+      <% String.to_integer(quote.average_premium) > 15000 -> %>
+        <font class="font-bold text-black-400/100">
+          <%= quote.quote_date %>
+        </font>
+      <% String.to_integer(quote.average_premium) > 10000 -> %>
+        <font class="font-medium text-slate-400/75">
+          <%= quote.quote_date %>
+        </font>
+      <% true -> %>
+        <font size="-1" class="font-medium text-slate-400/50"> 
+          <%= quote.quote_date %>
+        </font>
+    <% end %>
+  </:col>
+  <:col :let={quote} label="Average premium">
+    <%= cond do %>
+      <% String.to_integer(quote.average_premium) > 15000 -> %>
+        <font class="font-bold text-black-400/100">
+          <%= quote.average_premium %>
+        </font>
+      <% String.to_integer(quote.average_premium) > 10000 -> %>
+        <font class="font-medium text-slate-500/75">
+          <%= quote.average_premium %>
+        </font>
+      <% true -> %>
+        <font size="-1" class="font-medium text-slate-500/50"> 
+          <%= quote.average_premium %>
+        </font>
+    <% end %>
+  </:col>
+    <:col :let={quote} label="Underwriter">
+    <%= cond do %>
+      <% String.to_integer(quote.average_premium) > 15000 -> %>
+        <font class="font-bold text-black-400/100">
+          <%= quote.person_email %>
+        </font>
+      <% String.to_integer(quote.average_premium) > 10000 -> %>
+        <font class="font-medium text-slate-500/75">
+          <%= quote.person_email %>
+        </font>
+      <% true -> %>
+        <font size="-1" class="font-medium text-slate-500/50"> 
+          <%= quote.person_email %>
+        </font>
+    <% end %>
+  </:col>
   <:action :let={quote}>
     <div class="sr-only">
       <.link navigate={~p"/quotes/#{quote}"}>Show</.link>
     </div>
-    <.link navigate={~p"/quotes/#{quote}/edit"}>Edit</.link>
+    <.link  class="font-medium text-slate-500/50" navigate={~p"/quotes/#{quote}/edit"}>Edit</.link>
   </:action>
   <:action :let={quote}>
-    <.link href={~p"/quotes/#{quote}"} method="delete" data-confirm="Are you sure?">
+    <.link class="font-medium text-slate-500/50" href={~p"/quotes/#{quote}"} method="delete" data-confirm="Are you sure?">
       Delete
     </.link>
   </:action>

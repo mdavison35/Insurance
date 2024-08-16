@@ -22,6 +22,7 @@
     <%= @quote.brokerage_name %></a></:item>
   <:item title="Quote date"><%= @quote.quote_date %></:item>
   <:item title="Average premium"><%= @quote.average_premium %></:item>
+  <:item title="Underwriter"><%= @quote.person_email %></:item>
 </.list>
 
 <.back navigate={~p"/quotes"}>Back to quotes</.back>

@@ -25,7 +25,7 @@ defmodule Insurance.Quotes do
           q in Quote,
           select: q,
           where: q.person_email == "",
-          order_by: [desc: :average_premium]
+          order_by: [desc: :quote_date]
         )
       Repo.all(query)
     else
@@ -34,7 +34,7 @@ defmodule Insurance.Quotes do
         q in Quote,
         select: q,
         where: q.person_email == ^person_email,
-        order_by: [desc: :average_premium]
+        order_by: [desc: :quote_date]
       )
     Repo.all(query)
     #Quote |> Ecto.Query.order_by(desc: :average_premium) |> Repo.all()
@@ -43,11 +43,27 @@ defmodule Insurance.Quotes do
   end
 
   def list_quotes_by_broker(broker_name) do
-    Quote |> Ecto.Query.where(broker_name: ^broker_name) |> Repo.all()
+    query =
+      from(
+        q in Quote,
+        select: q,
+        where: q.broker_name == ^broker_name,
+        order_by: [desc: :quote_date]
+      )
+    Repo.all(query)
+    #Quote |> Ecto.Query.where() |> Repo.all()
   end
 
   def list_quotes_by_brokerage(brokerage_name) do
-    Quote |> Ecto.Query.where(brokerage_name: ^brokerage_name) |> Repo.all()
+    query =
+      from(
+        q in Quote,
+        select: q,
+        where: q.brokerage_name == ^brokerage_name,
+        order_by: [desc: :quote_date]
+      )
+    Repo.all(query)
+    #Quote |> Ecto.Query.where(brokerage_name: ^brokerage_name) |> Repo.all()
   end
 
   @doc """
