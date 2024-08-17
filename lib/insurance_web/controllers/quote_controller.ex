@@ -5,7 +5,7 @@ defmodule InsuranceWeb.QuoteController do
   alias Insurance.Quotes.Quote
 
   def index(conn, _params) do
-    quotes = Quotes.list_quotes(get_person_email(conn))
+    quotes = Quotes.list_quotes_by_email(get_person_email(conn))
     render(conn, :index, quotes: quotes, person_email: get_person_email(conn))
   end
 

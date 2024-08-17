@@ -15,7 +15,8 @@ defmodule Insurance.QuotesFixtures do
         average_premium: "some average_premium",
         broker_name: "some broker_name",
         brokerage_name: "some brokerage_name",
-        quote_date: "some quote_date"
+        quote_date: "some quote_date",
+        person_email: "some person_email"
       })
       |> Insurance.Quotes.create_quote()
 

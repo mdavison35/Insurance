@@ -9,7 +9,14 @@ defmodule Insurance.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+        preferred_cli_env: [
+          coveralls: :test,
+          "coveralls.detail": :test,
+          "coveralls.post": :test,
+          "coveralls.html": :test
+]
     ]
   end
 
@@ -53,7 +60,8 @@ defmodule Insurance.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:csv, "~> 3.0"},
       {:auth_plug, "~> 1.5"},
-      {:attrs, "~> 0.6.0"}
+      {:attrs, "~> 0.6.0"},
+      {:excoveralls, "~> 0.15.2", only: [:test, :dev]}
     ]
   end
 

@@ -1,6 +1,7 @@
 defmodule Insurance.Quotes.Importer do
   alias Insurance.Quotes
   alias Insurance.Quotes.Quote
+  require Logger
 
   def preview(rows) do
     rows
@@ -15,24 +16,21 @@ defmodule Insurance.Quotes.Importer do
   def import(rows) do
     rows
     |> transform_keys()
-    |> Enum.map(fn attrs ->
-      Quotes.create_quote(attrs)
+    |> Enum.map(fn attrs -> Quotes.create_quote(attrs)
     end)
   end
 
   def import(rows, email) do
     rows
     |> transform_keys()
-    |> Enum.map(fn attrs ->
-      Quotes.create_quote(attrs, email)
+    |> Enum.map(fn attrs -> Quotes.create_quote_email(attrs, email)
     end)
   end
 
   # "Account Name" => "account_name"
   defp transform_keys(rows) do
     rows
-    |> Enum.map(fn row ->
-      Enum.reduce(row, %{}, fn {key, val}, map ->
+    |> Enum.map(fn row -> Enum.reduce(row, %{}, fn {key, val}, map ->
         Map.put(map, underscore_key(key), val)
       end)
     end)

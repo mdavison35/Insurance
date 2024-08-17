@@ -3,9 +3,6 @@ defmodule InsuranceWeb.BrokerController do
   alias Insurance.Quotes
   alias Insurance.Quotes.Quote
 
-  def index(conn, _params) do
-    render(conn, :index)
-  end
 
   def show(conn, %{"name" => name}) do
     name = name

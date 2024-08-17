@@ -17,7 +17,7 @@ defmodule Insurance.Quotes do
       [%Quote{}, ...]
 
   """
-  def list_quotes(person_email \\ "") do
+  def list_quotes_by_email(person_email \\ "") do
     #Quote |> Ecto.Query.where(broker_name: "Jared Mertz") |> Repo.all()
     if is_integer(person_email) do
       query =
@@ -40,6 +40,16 @@ defmodule Insurance.Quotes do
     #Quote |> Ecto.Query.order_by(desc: :average_premium) |> Repo.all()
     #Repo.all(Quote
     end
+  end
+
+  def list_quotes() do
+    query =
+      from(
+        q in Quote,
+        select: q,
+        order_by: [desc: :quote_date]
+      )
+    Repo.all(query)
   end
 
   def list_quotes_by_broker(broker_name) do
@@ -100,8 +110,12 @@ defmodule Insurance.Quotes do
   #  |> Repo.insert()
   #end
 
-  def create_quote(attrs \\ %{}, email) do
+  def create_quote_email(attrs \\ %{}, email) do
     attrs = Attrs.put(attrs, :person_email, email)
+    create_quote(attrs)
+  end
+
+  def create_quote(attrs \\ %{}) do
     %Quote{}
     |> Quote.changeset(attrs)
     |> Repo.insert()

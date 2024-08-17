@@ -4,13 +4,15 @@
     <.link href={~p"/quotes/new"}>
       <.button>New Quote</.button>
     </.link>
-    <.link href={~p"/quotes/import/#{@person.email}"}>
-      <.button>import</.button>
+    <%= if @loggedin do %>
+      <.link href={~p"/quotes/import/#{@person.email}"}>
+      <.button>Import</.button>
     </.link>
+    <% end %>
   </:actions>
 </.header>
 
-<%= if @person do %>
+<%= if @loggedin do %>
   <h2><%= @person.email %></h2>
 <% end %>
 

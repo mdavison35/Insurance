@@ -2,7 +2,7 @@ defmodule InsuranceWeb.AuthController do
   use InsuranceWeb, :controller
 
   def login(conn, _params) do
-    redirect(conn, external: AuthPlug.get_auth_url(conn, ~p"/quotes"))
+    redirect(conn, external: AuthPlug.get_auth_url(conn, ~p"/"))
   end
 
   def logout(conn, _params) do

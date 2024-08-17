@@ -44,9 +44,7 @@ defmodule InsuranceWeb.QuoteLive.Import do
   end
 
   def handle_event("import", _, socket) do
-    email = socket.assigns.email
-    imported_quotes = Importer.import(socket.assigns.parsed_rows, email)
-
+    imported_quotes = Importer.import(socket.assigns.parsed_rows, socket.assigns.email)
     {
       :noreply,
       socket
