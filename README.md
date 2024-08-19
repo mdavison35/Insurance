@@ -1,4 +1,8 @@
 # Insurance
+## MDavison Capstone Project for CS-499
+
+In order to run this project, you will need to follow the installition instructions for Phoenix framework found 
+[here](https://hexdocs.pm/phoenix/installation.html).
 
 To start your Phoenix server:
 
