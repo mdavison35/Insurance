@@ -5,12 +5,7 @@
 In order to run this project, you will need to follow the installition instructions for Phoenix framework found 
 [here](https://hexdocs.pm/phoenix/installation.html).
 
-Then in the terminal in the folder for the project:
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-To start your Phoenix server:
-
+Then in the terminal cd into the folder for the project and:
   * Run `mix setup` to setup dependencies
   * Run `mix deps.get` to install dependencies
   * Run `mix ecto.create` to create the database
