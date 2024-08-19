@@ -27,6 +27,13 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ## Data
 The sample_data.csv file can be used to test the import feature and populate data
 
+## Database
+ * The project uses a SQL database with the postgresql package
+ * This is managed by the Ecto package
+ * The model(schema) can be found in /lib/insurance/quotes/quote.ex
+ * The functions using Ecto to interact with the database are in /lib/insurance/quotes.ex
+ * The database migration is in /priv/repo/migrations and begins 2024(a date stamp of the migration time)
+
 ## Acknowledgements
 
   * The CSV importing feature using liveview was adapted from [FullstackPhoenix](https://fullstackphoenix.com/tutorials/import-csv-with-preview-liveview-file-upload)
