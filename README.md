@@ -12,9 +12,10 @@ Then in the terminal cd into the folder for the project and:
   * Run `mix ecto.migrate` to run the database migration
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-The sample_data.csv file can be used to test the import feature and populate data
-
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+## Data
+The sample_data.csv file can be used to test the import feature and populate data
 
 ## Acknowledgements
 
