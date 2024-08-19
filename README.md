@@ -1,7 +1,7 @@
 # Insurance
 ### MDavison Capstone Project for CS-499
 
-##Installation
+## Installation
 In order to run this project, you will need to follow the installition instructions for Phoenix framework found 
 [here](https://hexdocs.pm/phoenix/installation.html).
 
@@ -14,10 +14,7 @@ Then in the terminal cd into the folder for the project and:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-## Learn more
+## Acknowledgements
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  * The CSV importing feature using liveview was adapted from [FullstackPhoenix](https://fullstackphoenix.com/tutorials/import-csv-with-preview-liveview-file-upload)
+
