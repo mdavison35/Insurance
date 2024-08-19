@@ -14,6 +14,16 @@ Then in the terminal cd into the folder for the project and:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## Authentication
+ * Visit [authdemo.fly.dev](authdemo.fly.dev)
+ * Sign in using GitHub or Google
+ * Create the app with localhost:4000 as the URL
+ * Save and copy the export AUTH_API_KEY=... key
+ * create a new .env file in the project directory
+ * paste the export AUTH_API_KEY=... into the .env file
+ * add the .env file to .gitignore
+ * run `source .env` in the project directory
+
 ## Data
 The sample_data.csv file can be used to test the import feature and populate data
 
