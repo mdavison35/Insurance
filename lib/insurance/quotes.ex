@@ -5,8 +5,41 @@ defmodule Insurance.Quotes do
 
   import Ecto.Query, warn: false
   alias Insurance.Repo
-  alias Insurance.Quotes
   alias Insurance.Quotes.Quote
+
+  @doc """
+  Returns the list of quotes matching the user's email.
+
+  ## Examples
+
+      iex> list_quotes("example@email.com")
+      [%Quote{}, ...]
+
+  """
+  def list_quotes_by_email(person_email \\ "") do
+    # If email is 0(default case) use blank string
+    # for query
+    if is_integer(person_email) do
+      query =
+        from(
+          q in Quote,
+          select: q,
+          where: q.person_email == "",
+          order_by: [desc: :quote_date]
+        )
+      Repo.all(query)
+    # Otherwise use email parameter for query
+    else
+    query =
+      from(
+        q in Quote,
+        select: q,
+        where: q.person_email == ^person_email,
+        order_by: [desc: :quote_date]
+      )
+    Repo.all(query)
+    end
+  end
 
   @doc """
   Returns the list of quotes.
@@ -17,31 +50,6 @@ defmodule Insurance.Quotes do
       [%Quote{}, ...]
 
   """
-  def list_quotes_by_email(person_email \\ "") do
-    #Quote |> Ecto.Query.where(broker_name: "Jared Mertz") |> Repo.all()
-    if is_integer(person_email) do
-      query =
-        from(
-          q in Quote,
-          select: q,
-          where: q.person_email == "",
-          order_by: [desc: :quote_date]
-        )
-      Repo.all(query)
-    else
-    query =
-      from(
-        q in Quote,
-        select: q,
-        where: q.person_email == ^person_email,
-        order_by: [desc: :quote_date]
-      )
-    Repo.all(query)
-    #Quote |> Ecto.Query.order_by(desc: :average_premium) |> Repo.all()
-    #Repo.all(Quote
-    end
-  end
-
   def list_quotes() do
     query =
       from(
@@ -52,6 +60,16 @@ defmodule Insurance.Quotes do
     Repo.all(query)
   end
 
+    @doc """
+  Returns the list of quotes for a given
+  broker name.
+
+  ## Examples
+
+      iex> list_quotes("John Smith")
+      [%Quote{}, ...]
+
+  """
   def list_quotes_by_broker(broker_name) do
     query =
       from(
@@ -61,9 +79,18 @@ defmodule Insurance.Quotes do
         order_by: [desc: :quote_date]
       )
     Repo.all(query)
-    #Quote |> Ecto.Query.where() |> Repo.all()
   end
 
+    @doc """
+  Returns the list of quotes for a given
+  brokerage name.
+
+  ## Examples
+
+      iex> list_quotes("Mega Brokers")
+      [%Quote{}, ...]
+
+  """
   def list_quotes_by_brokerage(brokerage_name) do
     query =
       from(
@@ -73,7 +100,6 @@ defmodule Insurance.Quotes do
         order_by: [desc: :quote_date]
       )
     Repo.all(query)
-    #Quote |> Ecto.Query.where(brokerage_name: ^brokerage_name) |> Repo.all()
   end
 
   @doc """
@@ -104,22 +130,30 @@ defmodule Insurance.Quotes do
       {:error, %Ecto.Changeset{}}
 
   """
-  # def create_quote(attrs) do
-  #  %Quote{}
-  #  |> Quote.changeset(attrs)
-  #  |> Repo.insert()
-  #end
-
-  def create_quote_email(attrs \\ %{}, email) do
-    attrs = Attrs.put(attrs, :person_email, email)
-    create_quote(attrs)
-  end
-
   def create_quote(attrs \\ %{}) do
     %Quote{}
     |> Quote.changeset(attrs)
     |> Repo.insert()
   end
+
+   @doc """
+  Creates a quote adding the email attribute.
+
+  ## Examples
+
+      iex> create_quote(%{field: value}, "example@email.com")
+      {:ok, %Quote{}}
+
+      iex> create_quote(%{field: bad_value}, "example@email.com)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_quote_email(attrs \\ %{}, email) do
+    attrs = Attrs.put(attrs, :person_email, email)
+    create_quote(attrs)
+  end
+
+
 
 
   @doc """

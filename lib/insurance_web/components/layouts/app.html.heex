@@ -1,26 +1,19 @@
-<header class="px-4 sm:px-6 lg:px-8">
+ <header class="px-4 sm:px-6 lg:px-8">
   <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
     <div class="flex items-center gap-4">
-      <a href="/">
-        <img src={~p"/images/logo.svg"} width="36" />
-      </a>
       <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
-        v<%= Application.spec(:phoenix, :vsn) %>
+        Mark's Quote Viewer
       </p>
     </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
-        @elixirphoenix
-      </a>
-      <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
+      <div
+      class="flex flex-col items-end">
+        <.link
+        class=" px-6 py-3 bg-[#fea5a5] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#f76e6e] hover:shadow-lg focus:bg-[#f76e6e] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#a23434] active:shadow-lg transition duration-150 ease-in-out"
+        href="/quotes">
+          View Quotes
+        </.link>
+      </div>
     </div>
   </div>
 </header>

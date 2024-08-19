@@ -1,7 +1,6 @@
 defmodule InsuranceWeb.BrokerageController do
   use InsuranceWeb, :controller
   alias Insurance.Quotes
-  alias Insurance.Quotes.Quote
 
   def show(conn, %{"name" => name}) do
     name = name
