@@ -1,17 +1,23 @@
 # Insurance
-## MDavison Capstone Project for CS-499
+### MDavison Capstone Project for CS-499
 
+##Installation
 In order to run this project, you will need to follow the installition instructions for Phoenix framework found 
 [here](https://hexdocs.pm/phoenix/installation.html).
 
-To start your Phoenix server:
-
+Then in the terminal in the folder for the project:
   * Run `mix setup` to install and setup dependencies
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+To start your Phoenix server:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+  * Run `mix setup` to setup dependencies
+  * Run `mix deps.get` to install dependencies
+  * Run `mix ecto.create` to create the database
+  * Run `mix ecto.migrate` to run the database migration
+  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Learn more
 
