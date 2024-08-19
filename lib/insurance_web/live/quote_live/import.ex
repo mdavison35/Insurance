@@ -2,6 +2,7 @@ defmodule InsuranceWeb.QuoteLive.Import do
   use InsuranceWeb, :live_view
   alias Insurance.Quotes.Importer
 
+  # Mounts the liveview session and sets socket variables
   @impl true
   def mount(%{"email" => email}, _session, socket) do
     {:ok,
@@ -15,6 +16,8 @@ defmodule InsuranceWeb.QuoteLive.Import do
 
   end
 
+  # Upon user clicking the reset button, socket variables are
+  # set to blank lists, except :email which stays as the user email
   @impl true
   def handle_event("reset", _, socket) do
     {
@@ -27,13 +30,14 @@ defmodule InsuranceWeb.QuoteLive.Import do
     }
   end
 
+  # Validates socket
   def handle_event("validate", _params, socket) do
     {:noreply, socket}
   end
 
+  # Reads data from uploaded .csv file
   def handle_event("parse", _, socket) do
     parsed_rows = parse_csv(socket)
-
     {
       :noreply,
       socket
@@ -43,6 +47,7 @@ defmodule InsuranceWeb.QuoteLive.Import do
     }
   end
 
+  # Imports loaded data from the .csv into the database
   def handle_event("import", _, socket) do
     imported_quotes = Importer.import(socket.assigns.parsed_rows, socket.assigns.email)
     {
@@ -53,6 +58,7 @@ defmodule InsuranceWeb.QuoteLive.Import do
     }
   end
 
+  # Helper function to parse .csv into an elixir list
   defp parse_csv(socket) do
     consume_uploaded_entries(socket, :sample_csv, fn %{path: path}, _entry ->
       rows =
